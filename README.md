@@ -5,6 +5,9 @@ HealthBuddy is an AI-powered multi-agent healthcare assistant designed to simpli
 
 This project is developed as part of the Google 5-Day AI Agents Intensive Course.
 
+
+
+
 **🚑 1. Problem Statement**
 
 Millions of patients struggle with:
@@ -44,7 +47,10 @@ HealthBuddy is a multi-agent healthcare assistant that:
  * Useful for long-term tracking
 
 
+
+
 **🧩 3. Multi-Agent Architecture**
+
             ┌─────────────────────┐
             │     User Upload      │
             └──────────┬──────────┘
@@ -76,6 +82,9 @@ HealthBuddy is a multi-agent healthcare assistant that:
 This architecture ensures modular, scalable, and maintainable agent behavior.
 
 
+
+
+
 **🧠 4. Key Concepts Used **
  ✔ Multi-Agent System
  ✔ Sequential Agents
@@ -89,6 +98,9 @@ This architecture ensures modular, scalable, and maintainable agent behavior.
  ✔ Agent Evaluation through test cells
 
 
+
+
+
 **⚙️ 5. Project Features**
 ✔ Upload any lab report (PDF/JPG/PNG)
 ✔ Universal medical parser (CBC, LFT, KFT, Thyroid, Hormones, Vitamins, Sugar tests)
@@ -97,6 +109,8 @@ This architecture ensures modular, scalable, and maintainable agent behavior.
 ✔ Personalized health tips
 ✔ Symptom triage
 ✔ Real-time suggestions
+
+
 
 
 **📁 6. Project Structure**
@@ -124,6 +138,8 @@ HealthBuddy/
 
 
 
+
+
 **🚀 7. How to Run (Colab)**
  1. Open HealthBuddy.ipynb
  2. Run the install libraries cell
@@ -136,6 +152,7 @@ HealthBuddy/
 
 
 
+
 **🧪 8. Sample Usage (Orchestrator)**
 orc = HealthAgentOrchestrator()
 orc.run("upload_report", file_path="report.pdf", patient_id="user1")
@@ -145,9 +162,13 @@ orc.run("tips", patient_id="user1")
 
 
 
+
+
 **🎬 9. Video Demo (3-minute Script)**
 
    ---------
+
+
 
 
 
@@ -161,9 +182,13 @@ orc.run("tips", patient_id="user1")
 
 
 
+
+
 **⚠️ 11. Disclaimer**
 HealthBuddy is not a medical device.
 Always consult a qualified doctor for medical decisions.
+
+
 
 
 **👨‍💻 Author**
