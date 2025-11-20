@@ -1,5 +1,6 @@
 **📘 HealthBuddy — AI Multi-Agent Healthcare Assistant**
-Personal Medical Report Analyzer + Symptom Triage + Personalized Health Tips
+
+ Personal Medical Report Analyzer + Symptom Triage + Personalized Health Tips
 
 HealthBuddy is an AI-powered multi-agent healthcare assistant designed to simplify medical reports, analyze symptoms, and give personalized health recommendations — all in English + Hindi.
 
@@ -85,35 +86,62 @@ This architecture ensures modular, scalable, and maintainable agent behavior.
 
 
 
-**🧠 4. Key Concepts Used **
+
+
+
+**🧠 4. Key Concepts Used**
+
  ✔ Multi-Agent System
+
  ✔ Sequential Agents
+ 
  ✔ Loop Agents (Iterative parsing)
+ 
  ✔ Tools: OCR Tool, Parser Tool
+ 
  ✔ Custom Tools (ParserTool, OCRTool)
+ 
  ✔ Memory (Per-patient JSON)
+ 
  ✔ State Management
+ 
  ✔ Context Engineering (clean summaries)
+ 
  ✔ Observability (print sections)
+ 
  ✔ Agent Evaluation through test cells
 
 
 
 
 
+
+
 **⚙️ 5. Project Features**
+
 ✔ Upload any lab report (PDF/JPG/PNG)
+
 ✔ Universal medical parser (CBC, LFT, KFT, Thyroid, Hormones, Vitamins, Sugar tests)
+
 ✔ English + Hindi output
+
 ✔ Human-readable summaries
+
 ✔ Personalized health tips
+
 ✔ Symptom triage
+
 ✔ Real-time suggestions
 
 
 
 
+
+
+
+
 **📁 6. Project Structure**
+
 HealthBuddy/
 │
 ├── agents/
@@ -140,24 +168,44 @@ HealthBuddy/
 
 
 
+
+
 **🚀 7. How to Run (Colab)**
+
  1. Open HealthBuddy.ipynb
+ 
  2. Run the install libraries cell
+  
  3. Run folder creation
+  
  4. Upload PDF report
+  
  5. Run OCR + Parser
+  
  6. Run all Agents
+  
  7. Use Orchestrator
+  
  8. See final formatted output
 
 
 
 
+
+
+
 **🧪 8. Sample Usage (Orchestrator)**
+
+
+
 orc = HealthAgentOrchestrator()
+
 orc.run("upload_report", file_path="report.pdf", patient_id="user1")
+
 orc.run("summary", patient_id="user1")
+
 orc.run("symptoms", text="dizziness and headache")
+
 orc.run("tips", patient_id="user1")
 
 
@@ -173,8 +221,9 @@ orc.run("tips", patient_id="user1")
 
 
 **🔮 10. Future Improvements**
+
 * Gemini 2.0 Flash for medical LLM reasoning
-* Doctor-prescription summarizer
+*  Doctor-prescription summarizer
 * Multi-user cloud database
 * Chat conversational mode
 * Integration with Google Fit / wearable data
@@ -185,6 +234,7 @@ orc.run("tips", patient_id="user1")
 
 
 **⚠️ 11. Disclaimer**
+
 HealthBuddy is not a medical device.
 Always consult a qualified doctor for medical decisions.
 
@@ -192,5 +242,6 @@ Always consult a qualified doctor for medical decisions.
 
 
 **👨‍💻 Author**
+
 Saifur Rahman
 AI Developer | Google AI Agents Course Participant
