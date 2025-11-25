@@ -178,7 +178,7 @@ This results in poor health awareness, delayed treatment, and miscommunication.
     ├── agents/
     │   ├── ingest_agent.py
     │   ├── summary_agent.py
-    │   ├── symptom_agent.py
+    │   ├── chat_agent.py
     │   ├── tips_agent.py
     │   └── orchestrator.py
     │
@@ -195,8 +195,7 @@ This results in poor health awareness, delayed treatment, and miscommunication.
     ├── data/
     │   └── sample_report.pdf   (optional, for testing)
     │
-    ├── streamlit_app.py        <-- Web dashboard (HealthBuddy UI)
-    ├── HealthBuddy.ipynb       <-- Original/clean notebook (agents + orchestrator)
+    ├── streamlit_app.py        
     ├── requirements.txt
     └── README.md
 
