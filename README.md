@@ -1,247 +1,323 @@
-**📘 HealthBuddy — AI Multi-Agent Healthcare Assistant**
+# 📘 HealthBuddy — AI Multi-Agent Healthcare Assistant (with Web Dashboard)
 
- Personal Medical Report Analyzer + Symptom Triage + Personalized Health Tips
+**Personal Medical Report Analyzer + Symptom Triage + Personalized Health Tips + Web Dashboard**
 
-HealthBuddy is an AI-powered multi-agent healthcare assistant designed to simplify medical reports, analyze symptoms, and give personalized health recommendations — all in English + Hindi.
+HealthBuddy is an AI-powered multi-agent healthcare assistant designed to:
 
-This project is developed as part of the Google 5-Day AI Agents Intensive Course.
+- Simplify medical reports  
+- Analyze symptoms  
+- Give personalized health recommendations  
+- Provide a real-time **web dashboard** to interact with your data  
+- Support **English + Hindi**  
 
 
 
+---
 
-**🚑 1. Problem Statement**
+## 🚑 1. Problem Statement
 
 Millions of patients struggle with:
- * Medical reports they cannot understand
- * No proper summary of past health data
- * Confusion about whether their symptoms are serious
- * No personalized health tips based on lab reports
- * Multiple doctors → many prescriptions → no unified record
+
+- Medical reports they cannot understand  
+- No proper summary of past health data  
+- Confusion about whether their symptoms are serious  
+- No personalized health tips based on lab reports  
+- Multiple doctors → many prescriptions → no unified record  
 
 This results in poor health awareness, delayed treatment, and miscommunication.
 
-**🤖 2. Solution — HealthBuddy**
-HealthBuddy is a multi-agent healthcare assistant that:
+---
 
-🧠 1. Reads & extracts data from ANY lab report
- * Automates OCR (PDF/Image → Text)
- * Parses CBC, LFT, KFT, Thyroid, Hormones, Vitamin, Sugar tests, etc.
+## 🤖 2. Solution — HealthBuddy
 
-📊 2. Creates human-readable medical summaries
- * Clean English summary
- * Clean Hindi summary
- * Report-style output (PDF-like)
+**HealthBuddy** is a multi-agent healthcare assistant with a **Streamlit-based dashboard** and **Google Gemini–powered reasoning** that:
 
-🩺 3. Analyzes symptoms
- * Low / Moderate / High risk triage
- * English + Hindi advice
- * When to see a doctor
+### 🧠 1. Reads & extracts data from ANY lab report
+- OCR for PDFs / Images (PDF, JPG, PNG)
+- Parses CBC, LFT, KFT, Thyroid, Hormones, Vitamin, Sugar tests, etc.
 
-❤️ 4. Gives personalized health tips
- * Based on medical history
- * Lifestyle suggestions
- * Follow-up reminders
+### 📊 2. Creates human-readable medical summaries
+- Clean **English** summary  
+- Clean **Hindi** summary  
+- Triage-style doctor note (risk level / key concerns)
 
-💾 5. Stores patient history
- * Memory saved in JSON
- * Multiple uploads over time
- * Useful for long-term tracking
+### 🩺 3. Analyzes symptoms (via agents)
+- Low / Moderate / High risk classification  
+- Symptom explanation in English + Hindi  
+- When to see a doctor
 
+### ❤️ 4. Gives personalized health tips
+- Based on extracted report + AI summary  
+- **Now powered by Google Gemini**  
+- Lifestyle + diet + follow-up suggestions  
+- Simple, safe, non-prescriptive tips in Hinglish
 
+### 🧮 5. Web Dashboard (Streamlit)
+- Upload report from browser  
+- See extracted data as a clean table  
+- View English/Hindi summary + tips  
+- Ask questions via **“Ask with AI” chat panel** (context-aware)
 
+### 💾 6. Stores patient history
+- Per-patient **history stored on disk** (folder-based)  
+- Each upload becomes one JSON record  
+- Old reports can be reloaded from **History tab** → no need to re-upload
 
-**🧩 3. Multi-Agent Architecture**
+---
 
-            ┌─────────────────────┐
-            │     User Upload      │
-            └──────────┬──────────┘
-                       │
-                       ▼
-       ┌────────────────────────────────────┐
-       │           Ingest Agent             │
-       │ OCR → Parser → Memory Save         │
-       └───────────────┬────────────────────┘
-                       │
-                       ▼
-        ┌─────────────────────────────────┐
-        │           Summary Agent         │
-        │   English + Hindi Summaries     │
-        └─────────────────────────────────┘
-                       │
-                       ▼
-        ┌─────────────────────────────────┐
-        │          Symptom Agent          │
-        │  Risk Triage + Multilingual     │
-        └─────────────────────────────────┘
-                       │
-                       ▼
-        ┌─────────────────────────────────┐
-        │          Tips Agent             │
-        │ Personalized Tips + Reminders   │
-        └─────────────────────────────────┘
+## 🧩 3. Multi-Agent Architecture
 
-This architecture ensures modular, scalable, and maintainable agent behavior.
+```text
+        ┌─────────────────────┐
+        │     User Upload      │
+        │ (Streamlit Dashboard)│
+        └──────────┬──────────┘
+                   │
+                   ▼
+   ┌────────────────────────────────────┐
+   │           Ingest Agent             │
+   │  OCR → Parser → Store in Memory    │
+   └───────────────┬────────────────────┘
+                   │
+                   ▼
+    ┌─────────────────────────────────┐
+    │           Summary Agent         │
+    │   English + Hindi Summaries     │
+    └─────────────────────────────────┘
+                   │
+                   ▼
+    ┌─────────────────────────────────┐
+    │          Symptom Agent          │
+    │  Risk Triage + Multilingual     │
+    └─────────────────────────────────┘
+                   │
+                   ▼
+    ┌─────────────────────────────────┐
+    │          Tips Agent             │
+    │  Personalized Tips + Reminders  │
+    │  (now Gemini-powered)           │
+    └─────────────────────────────────┘
+                   │
+                   ▼
+    ┌─────────────────────────────────┐
+    │     Streamlit Web Dashboard     │
+    │  Summary View + Chat with AI    │
+    └─────────────────────────────────┘
 
+```
 
+---
 
+### 🧠 4. Key Concepts Used
 
+✅ Multi-Agent System (Ingest, Summary, Symptom, Tips, Orchestrator)
 
+✅ Sequential Agents (pipeline-style processing)
 
+✅ Custom Tools (OCRTool, ParserTool)
 
+✅ Memory (per-patient JSON / folder-based storage)
 
-**🧠 4. Key Concepts Used**
+✅ Context Engineering (clean summaries, chat context)
 
- ✔ Multi-Agent System
+✅ Observability (print sections in notebook, logging)
 
- ✔ Sequential Agents
- 
- ✔ Loop Agents (Iterative parsing)
- 
- ✔ Tools: OCR Tool, Parser Tool
- 
- ✔ Custom Tools (ParserTool, OCRTool)
- 
- ✔ Memory (Per-patient JSON)
- 
- ✔ State Management
- 
- ✔ Context Engineering (clean summaries)
- 
- ✔ Observability (print sections)
- 
- ✔ Agent Evaluation through test cells
+✅ Web UI with Streamlit (dashboard + chat)
 
+✅ Google Gemini Integration
 
+   * Health tips generation
+   * Context-aware chat about the report
 
+---
 
+### ⚙️ 5. Project Features
 
+✔ Upload any lab report (PDF / JPG / PNG)
 
+✔ Automated extraction of key parameters
 
-**⚙️ 5. Project Features**
+✔ English + Hindi medical summary
 
-✔ Upload any lab report (PDF/JPG/PNG)
+✔ Doctor-style note (triage / seriousness)
 
-✔ Universal medical parser (CBC, LFT, KFT, Thyroid, Hormones, Vitamins, Sugar tests)
+✔ Personalized health tips (Gemini + Agents)
 
-✔ English + Hindi output
+✔ Symptom triage via agents (from notebook/orchestrator)
 
-✔ Human-readable summaries
+✔ Streamlit Dashboard UI:
 
-✔ Personalized health tips
+   * Dark / Light mode toggle
 
-✔ Symptom triage
+   * Cards for Extracted Data, Summary, Tips
 
-✔ Real-time suggestions
+   * Fixed-height chat area on right
 
+✔ Ask with AI:
 
+   * Gemini-style interface using report context
 
+   * Never asks user to upload again (report already in context)
 
+✔ Patient-wise history:
 
+   * memory/<patient_id>/record_x.json
 
+   * History tab to browse previous reports
 
+   * Single-click “View Full Report” to reload past data
 
-**📁 6. Project Structure**
+---
 
-HealthBuddy/
-│
-├── agents/
-│   ├── ingest_agent.py
-│   ├── summary_agent.py
-│   ├── symptom_agent.py
-│   ├── tips_agent.py
-│   └── orchestrator.py
-│
-├── tools/
-│   ├── ocr_tool.py
-│   └── parser_tool.py
-│
-├── memory/
-│   ├── user1.json
-│
-├── data/
-│   ├── sample_report.pdf (optional)
-│
-├── HealthBuddy.ipynb  <-- Final cleaned notebook
-└── README.md
+### 📁 6. Project Structure
 
+  Notebook + Web App hybrid project
 
+    HealthBuddy/
+    │
+    ├── agents/
+    │   ├── ingest_agent.py
+    │   ├── summary_agent.py
+    │   ├── symptom_agent.py
+    │   ├── tips_agent.py
+    │   └── orchestrator.py
+    │
+    ├── tools/
+    │   ├── ocr_tool.py
+    │   └── parser_tool.py
+    │
+    ├── memory/
+    │   ├── user1/
+    │   │   ├── 1712345678.json
+    │   │   └── 1712348901.json
+    │   └── ... per-patient folders
+    │
+    ├── data/
+    │   └── sample_report.pdf   (optional, for testing)
+    │
+    ├── streamlit_app.py        <-- Web dashboard (HealthBuddy UI)
+    ├── HealthBuddy.ipynb       <-- Original/clean notebook (agents + orchestrator)
+    ├── requirements.txt
+    └── README.md
 
+---
 
+# 🚀 7. How to Run
+🟢 Option A — Run Full Dashboard (Local / Colab + Cloudflare / Streamlit Cloud)
 
+1. Install dependencies:
 
-
-**🚀 7. How to Run (Colab)**
-
- 1. Open HealthBuddy.ipynb
- 
- 2. Run the install libraries cell
+       pip install -r requirements.txt
+2. Run Streamlit app:
   
- 3. Run folder creation
-  
- 4. Upload PDF report
-  
- 5. Run OCR + Parser
-  
- 6. Run all Agents
-  
- 7. Use Orchestrator
-  
- 8. See final formatted output
+       streamlit run streamlit_app.py
+3. Open browser at:
 
+  * http://localhost:8501 (local)
 
+  * Or your Cloudflare / Streamlit Cloud public URL
+4. In the UI:
 
+  * Enter Patient ID (e.g., user1)
 
+  * Upload lab report (PDF/JPG/PNG)
 
+  * Wait for processing
 
+  * View:
 
-**🧪 8. Sample Usage (Orchestrator)**
+       * Extracted Data
 
+       * Summary (English/Hindi/Doctor Note)
 
+       * Health Tips
 
-orc = HealthAgentOrchestrator()
+       * Ask with AI chat
 
-orc.run("upload_report", file_path="report.pdf", patient_id="user1")
+ * Go to Patient History tab to view past reports.
 
-orc.run("summary", patient_id="user1")
+---
 
-orc.run("symptoms", text="dizziness and headache")
+🟣 Option B — Run Orchestrator in Colab
 
-orc.run("tips", patient_id="user1")
+1. Open HealthBuddy.ipynb in Google Colab
 
+2. Run setup cells:
 
+    * Install libraries
 
+    * Create folders
 
+    * Configure paths
 
-**🎬 9. Video Demo (3-minute Script)**
+3. Use the orchestrator:
 
-   ---------
+       from agents.orchestrator import HealthAgentOrchestrator
 
+       orc = HealthAgentOrchestrator()
 
+       # Upload and parse
+       orc.run("upload_report", file_path="report.pdf", patient_id="user1")
 
+       # Generate summary
+       orc.run("summary", patient_id="user1")
 
+       # Symptom triage
+       orc.run("symptoms", text="dizziness and headache")
 
-**🔮 10. Future Improvements**
+       # Health tips
+       orc.run("tips", patient_id="user1")
 
-* Gemini 2.0 Flash for medical LLM reasoning
-*  Doctor-prescription summarizer
-* Multi-user cloud database
-* Chat conversational mode
-* Integration with Google Fit / wearable data
-* Dashboard with charts
+   ---
 
+# 🧪 8. Sample Usage (Streamlit + Agents)
+Streamlit (Web)
 
+    streamlit run streamlit_app.py
+Agents (Notebook)
+         
+    orc = HealthAgentOrchestrator()
+    orc.run("upload_report", file_path="data/sample_report.pdf", patient_id="user1")
+    orc.run("summary", patient_id="user1")
+    orc.run("symptoms", text="fatigue and shortness of breath")
+    orc.run("tips", patient_id="user1")
 
+---
 
+# 🔮 9. Future Improvements
 
-**⚠️ 11. Disclaimer**
+⏳ Doctor-prescription summarizer (Rx sheet → explanation)
+
+⏳ Multi-user cloud database (e.g., Firestore / Postgres)
+
+⏳ Deeper wearable / Google Fit integration
+
+⏳ More charts/visualizations (long-term trends, vitals timeline)
+
+⏳ Role-based access (Doctor / Patient views)
+
+---
+
+# ⚠️ 10. Disclaimer
 
 HealthBuddy is not a medical device.
-Always consult a qualified doctor for medical decisions.
 
+   * It does not replace a doctor.
 
+   * It is meant for education and awareness, not diagnosis.
 
+   * Always consult a qualified healthcare professional for medical decisions.
 
-**👨‍💻 Author**
+---
+
+# 👨‍💻 Author
 
 Saifur Rahman
+
 AI Developer | Google AI Agents Course Participant
+
+  * Focus: AI Agents, LLMs, Healthcare AI, and Intelligent Dashboards
+
+  * Built as a Capstone Project for Google 5-Day AI Agents Intensive
+
+               
