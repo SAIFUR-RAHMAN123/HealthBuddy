@@ -8,3 +8,4 @@ PyPDF2
 google-generativeai
 opencv-python-headless
 python-dotenv
+PyMuPDF
