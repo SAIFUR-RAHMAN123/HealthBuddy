@@ -1,5 +1,7 @@
 # 📘 HealthBuddy — AI Multi-Agent Healthcare Assistant (with Web Dashboard)
 
+**Live Demo:** https://healthbuddy-ui4our.streamlit.app/
+
 **Personal Medical Report Analyzer + Symptom Triage + Personalized Health Tips + Web Dashboard**
 
 HealthBuddy is an AI-powered multi-agent healthcare assistant designed to:
