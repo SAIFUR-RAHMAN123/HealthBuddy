@@ -1,25 +1,36 @@
 import pytesseract
-from pdf2image import convert_from_path
+import fitz  # PyMuPDF
 from PIL import Image
+import numpy as np
 
 class OCRTool:
-    def __init__(self):
-        pass
-
-    def run(self, file_path):
+    def extract_text(self, filepath):
+        """Extracts text from both PDF and Images using PyMuPDF + OCR."""
         text = ""
 
-        # If PDF
-        if file_path.endswith(".pdf"):
-            pages = convert_from_path(file_path)
-            for page in pages:
-                text += pytesseract.image_to_string(page)
+        # Case 1: PDF
+        if filepath.lower().endswith(".pdf"):
+            try:
+                doc = fitz.open(filepath)
+                for page in doc:
+                    text += page.get_text()  # Direct extraction
+                    # If page has no text, use OCR
+                    if len(page.get_text().strip()) < 10:
+                        pix = page.get_pixmap()
+                        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+                        text += pytesseract.image_to_string(img)
+                return text
 
-        # If image (jpg/png)
-        else:
-            img = Image.open(file_path)
+            except Exception as e:
+                return f"PDF OCR Error: {e}"
+
+        # Case 2: Image
+        try:
+            img = Image.open(filepath)
             text = pytesseract.image_to_string(img)
+            return text
+        except Exception as e:
+            return f"Image OCR Error: {e}"
 
-        return text
 
 ocr_tool = OCRTool()
